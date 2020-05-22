@@ -7,26 +7,6 @@
 table {
 	background-color: #6FF;	
 }
-#nav li {
-	float: left;
-	list-style-type: none;
-	text-align: center;
-}
-#nav li a {
-	color: #000;
-	text-decoration: none;
-	background-color: #FFCC66;
-	text-align: center;
-	display: block;
-	height: 30px;
-	width: 70px;
-	margin-left: 0px;
-	padding-top: 0px;
-}
-#nav li a:hover {
-	color: #FFF;
-	background-color: #666;
-}
 #one{
 	color: #FFF;
 	font-size: 20px;
@@ -34,33 +14,10 @@ table {
 }
 
 
-#apDiv1 {
-	position: absolute;
-	width: 70px;
-	height: 34px;
-	z-index: 1;
-	left: 359px;
-	top: 141px;
-	visibility: hidden;
-}
-#apDiv2 {
-	position: absolute;
-	width: 71px;
-	height: 85px;
-	z-index: 1;
-	top: 38px;
-	visibility: hidden;
-	left: 351px;
-}
-#apDiv3 {
-	position: absolute;
-	width: 182px;
-	height: 115px;
-	z-index: 2;
-	left: 32px;
-	top: 408px;
-}
+
 </style>
+<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 <script type="text/javascript">
 function MM_showHideLayers() { //v9.0
   var i,p,v,obj,args=MM_showHideLayers.arguments;
@@ -70,7 +27,31 @@ function MM_showHideLayers() { //v9.0
     obj.visibility=v; }
 }
 </script>
-
+<script language="javascript">
+//收藏本站
+function AddFavorite(sURL,sTitle){
+	sURL=encodeURL(sURL);
+	try{
+		window.external.addFavorite(sURL,sTitle);
+		}catch(e){
+			try{
+				window.sidebar.addPanel(sTitle,sURL,"");
+				}catch(e){
+					alert("收藏本站失败，请使用Ctrl+D进行添加，或手动在浏览器里进行设置。");
+					}
+			}
+	
+	}
+//设为首页
+function SetHome(url){
+	if(document.all){
+		document.body.style.behavior='url(#default#homepage)';
+		document.body.setHomePage(url);
+		}else{
+			alert("您好，您的浏览器不支持自动设置网页为首页的功能，请您手动在浏览器里设置该网页为首页！");
+			}
+	}
+</script>
 </head>
 <body>
 <table width="770" height="120" border="1" align="center">
@@ -88,34 +69,23 @@ var mydate = new Date();
 var myyear = mydate.getFullYear();
 var mymonth = mydate.getMonth() + 1;
 var myday = mydate.getDate();
-document.write(myyear+"年知"+mymonth+"月"+myday+"日");
+document.write(myyear+"年"+mymonth+"月"+myday+"日");
 </script></td>
     <td width="547" align="center">
-    <ul id="nav">
-  <li><a href="index.html">设为首页</a></li>
-  <li onmouseover="MM_showHideLayers('apDiv2','','show')" onmouseout="MM_showHideLayers('apDiv2','','hide')">
-    <div id="apDiv1">
-      <div id="apDiv2">
-        <table width="100%"  bgcolor="#FFCC00" border="1" bordercolor="#FFCC00">
-          <tr>
-            <td><a href="htmls/jiaoan1.html">教案一</a></td>
-          </tr>
-          <tr>
-            <td><a href="htmls/jiaoan2.html">教案二</a></td>
-          </tr>
-          <tr>
-            <td><a href="#">教案三</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <a href="#">精彩教案</a></li>
-  <li><a href="#">精彩课件</a></li>
-  <li><a href="http://www.cnzhaozhoubridge.com">参考网站</a></li>
-  <li><a href="#">站长介绍</a></li>
-  <li><a href="mailto:1339838821@qq.com">联系电邮</a></li>
-  <li><a href="#">收藏本站</a></li>
-</ul></td> 
+    <ul id="MenuBar1" class="MenuBarHorizontal">
+      <li><a onclick="SetHome('网址')" href="javascript:void(0)" title="设为首页">设为首页</a></li>
+      <li><a  class="MenuBarItemSubmenu" href="#">精彩教案</a>
+       <ul>
+          <li><a href="htmls/jiaoan1.html">教案一</a></li>
+          <li><a href="htmls/jiaoan2.html">教案二</a></li>
+        </ul>
+      </li>
+      <li><a href="#">精彩课件</a></li>
+      <li><a href="http://www.cnzhaozhoubridge.com">参考网站</a></li>
+      <li><a href="http://localhost/guestbook/index.asp">留言板</a></li>
+      <li><a href="mailto:1339838821@qq.com">联系电邮</a></li>
+      <li><a onclick="AddFavorite('https://yld2306.github.io/LYLWeb/','赵州桥')" href="javascript:void(0)" title="收藏本站">收藏本站</a>    </li>
+    </ul></td> 
   </tr>
 </table>
 <table width="770"  height="480" border="1" align="center" bordercolor="#FFFFFF">
@@ -133,5 +103,8 @@ allowtransparency="true"></IFRAME>
     <td height="35"><p>&copy;制作：17教育技术学李艳丽 联系电邮：1339838821@qq.com</p></td>
   </tr>
 </table>
+<script type="text/javascript">
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+</script>
 </body>
 </html>
